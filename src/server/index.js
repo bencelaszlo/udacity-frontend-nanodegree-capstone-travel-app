@@ -1,5 +1,5 @@
 // Setup empty JS object to act as endpoint for all routes
-projectData = {};
+locationData = {};
 
 // Require Express, CORS and Body Parser
 const express = require('express');
@@ -32,7 +32,7 @@ app.listen(PORT, () => {
 
 app.get('/all', (req, res) => {
     try {
-        res.status(200).send(projectData);
+        res.status(200).send(locationData);
     } catch (error) {
         console.error(JSON.stringify(error));
         res.status(500).send();
@@ -41,15 +41,19 @@ app.get('/all', (req, res) => {
 
 app.post('/', (req, res) => {
     try {
-        const { temperature, date, userResponse } = req.body;
-        if (!(temperature && date && userResponse)) {
-            throw new Error('temperature, date and userResponse are required fields');
+        const { latitude, longitude, country, startDate } = req.body;
+
+        if (!(latitude && longitude && country && startDate)) {
+            throw new Error('latitude, longitude, country, startDate are required fields');
         }
-        projectData = {
-            temperature: temperature,
-            date: date,
-            userResponse: userResponse
+
+        locationData = {
+            latitude,
+            longitude,
+            country,
+            startDate
         };
+
         res.status(200).send();
     } catch (error) {
         console.error(JSON.stringify(error));

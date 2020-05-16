@@ -1,15 +1,4 @@
-/* Global Variables */
-const API_KEY = '2897c174293ae3e8006d0abfe1a402e4';
-const BASE_URL = 'https://api.openweathermap.org/data/2.5/weather';
-
-const getWeather = async (baseUrl, zipCode, apiKey) => {
-    const response = await fetch(`${baseUrl}?zip=${zipCode}&appid=${apiKey}`, {
-        method: 'GET'
-    });
-    return response.json();
-};
-
-const saveWeather = async (path, data) => {
+const saveLocation = async (path, data) => {
     await fetch(path, {
         method: 'POST',
         mode: 'cors',
@@ -23,6 +12,14 @@ const saveWeather = async (path, data) => {
         body: JSON.stringify(data)
     });
     return;
+};
+
+const getLocationInfo = async (location) => {
+    const response = await fetch(`http://api.geonames.org/searchJSON?q=${location}&maxRows=1&username=bencelaszlo`, {
+        method: 'GET'
+    });
+
+    return response.json();
 };
 
 const getAllData = async (path) => {
@@ -41,25 +38,34 @@ const getAllData = async (path) => {
 }
 
 const updateUi = () => {
-    getWeather(BASE_URL, document.querySelector('#zip').value, API_KEY).then((weather) => {
-        // Create a new date instance dynamically with JS
+    getLocationInfo(document.querySelector('#destination').value).then((locationResponse) => {
+        const location = locationResponse.geonames[0];
+        console.log(location);
+
         const d = new Date();
         const newDate = `${d.getMonth()}.${d.getDate()}.${d.getFullYear()}`;
 
+        const startDate = document.querySelector('#startDate').value;
+
         const data = {
-            temperature: weather.main.temp,
-            date: newDate,
-            userResponse: document.querySelector('#feelings').value
+            latitude: location.lat,
+            longitude: location.lng,
+            country: location.countryName,
+            startDate
         };
 
-        saveWeather('http://localhost:8080/', data).then(() => {
+        saveLocation('http://localhost:8080/', data).then(() => {
             getAllData('http://localhost:8080/all').then((storedData) => {
-                document.querySelector('#date').innerHTML = `<span>${storedData.date}</span>`;
-                document.querySelector('#temp').innerHTML = `<span>${storedData.temperature}</span>`;
-                document.querySelector('#content').innerHTML = `<span>${storedData.userResponse}</span>`;
+                console.log('saved', storedData);
+                console.log('location', location);
+                document.querySelector('#entryCity').innerHTML = `<span>City: ${location.toponymName}</span>`;
+                document.querySelector('#entryCountry').innerHTML = `<span>Country: ${storedData.country}</span>`;
+                document.querySelector('#entryStartDate').innerHTML = `<span>Start: ${storedData.startDate}</span>`;
+                document.querySelector('#entryLatitude').innerHTML = `<span>Latitude: ${storedData.latitude}</span>`;
+                document.querySelector('#entryLongitude').innerHTML = `<span>Longitude: ${storedData.longitude}</span>`;
             });
         });
     });
 }
 
-export { getWeather, saveWeather, getAllData, updateUi }
+export { getLocationInfo, saveLocation, getAllData, updateUi }
