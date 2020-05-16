@@ -40,11 +40,6 @@ const getAllData = async (path) => {
 const updateUi = () => {
     getLocationInfo(document.querySelector('#destination').value).then((locationResponse) => {
         const location = locationResponse.geonames[0];
-        console.log(location);
-
-        const d = new Date();
-        const newDate = `${d.getMonth()}.${d.getDate()}.${d.getFullYear()}`;
-
         const startDate = document.querySelector('#startDate').value;
 
         const data = {
@@ -56,11 +51,12 @@ const updateUi = () => {
 
         saveLocation('http://localhost:8080/', data).then(() => {
             getAllData('http://localhost:8080/all').then((storedData) => {
-                console.log('saved', storedData);
-                console.log('location', location);
                 document.querySelector('#entryCity').innerHTML = `<span>City: ${location.toponymName}</span>`;
                 document.querySelector('#entryCountry').innerHTML = `<span>Country: ${storedData.country}</span>`;
-                document.querySelector('#entryStartDate').innerHTML = `<span>Start: ${storedData.startDate}</span>`;
+
+                const d = new Date();
+                const daysBeforeTheTrip = Math.round((new Date(storedData.startDate) - d) / 86400000);
+                document.querySelector('#entryStartDate').innerHTML = `<span>Start: ${storedData.startDate} (${daysBeforeTheTrip} ${daysBeforeTheTrip == 1 ? 'day' : 'days'})</span>`;
                 document.querySelector('#entryLatitude').innerHTML = `<span>Latitude: ${storedData.latitude}</span>`;
                 document.querySelector('#entryLongitude').innerHTML = `<span>Longitude: ${storedData.longitude}</span>`;
             });
