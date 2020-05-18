@@ -35,7 +35,6 @@ app.get('/all', (req, res) => {
 // Save location data
 app.post('/', (req, res) => {
   try {
-    console.log('requestBody: ', JSON.stringify(req.body));
     const { latitude, longitude, country, startDate } = req.body;
 
     // Throw an error when something is missing from the location data object
@@ -52,7 +51,6 @@ app.post('/', (req, res) => {
 
     res.status(200).send();
   } catch (error) {
-    console.log(error);
     console.error(JSON.stringify(error));
     res.status(500).send(error);
   }

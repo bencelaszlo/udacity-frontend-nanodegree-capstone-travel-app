@@ -1,3 +1,8 @@
+// Global contants
+const GEONAMES_API_KEY = '';
+const WEATHERBIT_API_KEY = '';
+const PIXABAY_API_KEY = '';
+
 // Initalize the application, load saved last travel data
 const initalizeApplication = () => {
   // Add event listener to the search button
@@ -42,7 +47,7 @@ const saveLocation = async (path, data) => {
 
 // Query location to a name
 const getLocationInfo = async (location) => {
-  const response = await fetch(`http://api.geonames.org/searchJSON?q=${location}&maxRows=1&username=bencelaszlo`, {
+  const response = await fetch(`http://api.geonames.org/searchJSON?q=${location}&maxRows=1&username=${GEONAMES_API_KEY}`, {
     method: 'GET'
   });
 
@@ -51,7 +56,7 @@ const getLocationInfo = async (location) => {
 
 // Query weather data to a given location and time
 const getWeather = async (days, location) => {
-  const response = await fetch(`https://api.weatherbit.io/v2.0/forecast/daily?city=${location}&days=${days + 2}&key=735d4def59b348979a0a246d3fc88da4`, {
+  const response = await fetch(`https://api.weatherbit.io/v2.0/forecast/daily?city=${location}&days=${days + 2}&key=${WEATHERBIT_API_KEY}`, {
     method: 'GET'
   });
 
@@ -60,7 +65,7 @@ const getWeather = async (days, location) => {
 
 // Query pictures to a given location
 const getPicture = async (location) => {
-  const response = await fetch(`https://pixabay.com/api/?key=16594425-95ce33f4571e1209114762fd9&q=${location}&image_type=photo`, {
+  const response = await fetch(`https://pixabay.com/api/?key=${PIXABAY_API_KEY}&q=${location}&image_type=photo`, {
     method: 'GET'
   });
   return response.json();
