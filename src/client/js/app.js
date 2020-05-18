@@ -1,8 +1,8 @@
 // Initalize the application, load saved last travel data
 const initalizeApplication = () => {
   // Add event listener to the search button
-  const generateElement = document.querySelector('#generate');
-  generateElement.addEventListener('click', updateUi);
+  const startButtonElement = document.querySelector('#startButton');
+  startButtonElement.addEventListener('click', updateUi);
 
   // Set today as the minimum selectable date
   const startDateElement = document.querySelector('#startDate');

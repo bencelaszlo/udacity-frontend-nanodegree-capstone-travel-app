@@ -9,29 +9,37 @@
 
 <body>
   <div id="app">
-    <div class="headline">
+    <div id="headline">
       Travel Planner
     </div>
-    <div class="destination">
-      <label for="destination">Where do you want to go?</label>
-      <input type="text" id="destination" placeholder="Paris">
+    <div id="destination-form">
+      <div class="destination">
+        <label for="destination">Where do you want to go?</label>
+        <input type="text" id="destination" placeholder="Paris">
+      </div>
+      <div class="date">
+        <label for="date">When do you want to go?</label>
+        <input type="date" id="startDate" placeholder="">
+        <button id="startButton" type="submit">Start</button>
+      </div>
     </div>
-    <div class="date">
-      <label for="date">When do you want to go?</label>
-      <input type="date" id="startDate" placeholder="">
-      <button id="generate" type="submit">Start</button>
-    </div>
-    <div class="entry">
-      <div class="title">Most Recent Entry</div>
+    <div id="entry">
       <div id="entryHolder">
+
         <div id="entryImage"></div>
-        <div id="entryCity"></div>
-        <div id="entryCountry"></div>
+
+        <div id="entryInfo">
+          <div id="entryCity"></div>
+          <div id="entryCountry"></div>
+          <div id="entryLatitude"></div>
+          <div id="entryLongitude"></div>
+        </div>
+
         <div id="entryWeather"></div>
         <div id="entryStartDate"></div>
-        <div id="entryLatitude"></div>
-        <div id="entryLongitude"></div>
+
       </div>
+
     </div>
   </div>
 
