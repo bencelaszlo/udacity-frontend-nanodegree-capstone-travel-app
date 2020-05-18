@@ -30,6 +30,7 @@ app.listen(PORT, () => {
   console.log(`Server is listening on ${PORT}`);
 });
 
+// Send all saved data
 app.get('/all', (req, res) => {
   try {
     res.status(200).send(locationData);
@@ -39,10 +40,12 @@ app.get('/all', (req, res) => {
   }
 });
 
+// Save location data
 app.post('/', (req, res) => {
   try {
     const { latitude, longitude, country, startDate } = req.body;
 
+    // Throw an error when something is missing from the location data object
     if (!(latitude && longitude && country && startDate)) {
       throw new Error('latitude, longitude, country, startDate are required fields');
     }

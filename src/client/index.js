@@ -5,6 +5,7 @@ import {
   updateUi
 } from './js/app';
 
+// Initalize the application here
 initalizeApplication();
 
 export {
