@@ -1,3 +1,5 @@
+@import "./color_scheme";
+
 body {
     background: #f7f3e3;
     font-family: -apple-system, BlinkMacSystemFont, sans-serif;
@@ -10,41 +12,69 @@ body {
     grid-template-areas:
         "head head"
         "form entry";
-    height: 100vh;
-    width: 100vw;
-    background: #f7f3e3;
-    color: #2b2118;
+    height: 100%;
+    width: 100%;
+    background: $light;
+    color: $dark;
     justify-content: center;
     grid-gap: 1em;
     font-size: 1.5rem;
-    font-family: "Oswald", sans-serif;
+    font-family: 'Roboto', sans-serif;
 }
 
 #headline {
     grid-area: head;
-    background: rgba(59, 74, 107, 0.4);
-    color: #f7f3e3;
+    background: $primary;
+    color: $light;
     text-align: center;
     font-size: 4rem;
+    border-radius: 2rem;
+    border-bottom: 5px solid $secondary;
 }
 
 #destination-form {
     grid-area: form;
+    border-radius: 2rem;
+}
+
+#startButton {
+    border-top: 0;
+    border-left: 0;
+    border-right: 0;
+    border-bottom: 5px solid $primary;
+    display: block;
+    width: 100%;
+    height: 100px;
+    background: $secondary;
+    color: $dark;
+    font-size: 1.5rem;
+    font-family: 'Roboto', sans-serif;
+    margin-top: 1rem;
+    border-radius: 2rem;
+
+    &:hover {
+        background: $secondary-light;
+        border-bottom: 10px solid $primary-dark;
+    }
 }
 
 #entry {
     grid-area: entry;
-    background: rgba(59, 74, 107, 0.4);
+    background: $primary;
+    color: $light;
+    border-radius: 2rem;
 }
 
 #entryHolder {
     display: grid;
+    grid-template-rows: 50% auto;
     grid-template-areas:
         "pic pic pic"
         "info weather start";
-    width: 80%;
+    width: 90%;
     margin: 0 auto;
     justify-items: center;
+    border-radius: 2rem;
 }
 
 #entryImage {
@@ -54,20 +84,38 @@ body {
     align-items: center;
 
     img {
-        width: 100%;
+        display: block;
+        width: auto;
+        height: auto;
+        max-width: 100%;
+        max-height: 600px;
+        margin-bottom: 0.5rem;
     }
 }
 
 #entryInfo {
     grid-area: info;
+    background: $secondary-light;
+    border-radius: 1rem;
+    width: 90%;
+    text-align: center;
 }
 
 #entryWeather {
     grid-area: weather;
+    background: $secondary;
+    border-radius: 1rem;
+    width: 90%;
+    text-align: center;
 }
 
 #entryStartDate {
     grid-area: start;
+    background: $secondary-dark;
+    border-radius: 1rem;
+    width: 90%;
+    vertical-align: middle;
+    text-align: center;
 }
 
 /*  Basic Styling To Override Default For Basic HTML Elements */
@@ -81,22 +129,19 @@ input {
     display: block;
     height: 60px;
     width: 100%;
-    background: #b3b6b7;
-    color: #2b2118;
+    background: $light;
+    border-top: 0;
+    border-left: 0;
+    border-right: 0;
+    border-bottom: 3px dotted $secondary;
+    background-color: mix($secondary, $light, 8%);
+    color: $dark;
     font-size: 1.25rem;
-    font-family: "Oswald", sans-serif;
-    border: none;
-}
+    font-family: 'Roboto', sans-serif;
 
-button {
-    display: block;
-    width: 100%;
-    height: 100px;
-    background: #6f1a07;
-    color: #b3b6b7;
-    font-size: 1.5rem;
-    font-family: "Oswald", sans-serif;
-    border: none;
+    &:hover {
+        background-color: mix($secondary, $light, 15%);
+    }
 }
 
 h1 {
@@ -106,10 +151,10 @@ h1 {
 textarea {
     width: 100%;
     height: 150px;
-    background: #b3b6b7;
-    color: #2b2118;
+    background: $light;
+    border: 3px dotted $secondary;
     font-size: 1rem;
-    font-family: "Oswald", sans-serif;
+    font-family: 'Roboto', sans-serif;
 }
 
 /* Reset style for HTML element on active to have no border*/
@@ -125,20 +170,20 @@ button:focus {
 
 ::placeholder {
     /* Firefox, Chrome, Opera */
-    color: #f7f3e3;
-    font-family: "Oswald", sans-serif;
+    color: $light;
+    font-family: 'Roboto', sans-serif;
 }
 
 :-ms-input-placeholder {
     /* Internet Explorer 10-11 */
-    color: #f7f3e3;
-    font-family: "Oswald", sans-serif;
+    color: $light;
+    font-family: 'Roboto', sans-serif;
 }
 
 ::-ms-input-placeholder {
     /* Microsoft Edge */
-    color: #f7f3e3;
-    font-family: "Oswald", sans-serif;
+    color: $light;
+    font-family: 'Roboto', sans-serif;
 }
 
 @media (pointer: coarse) {
