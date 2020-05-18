@@ -8,7 +8,7 @@
     "start": "node src/server/index.js",
     "build": "webpack --config webpack.prod.js",
     "dev": "webpack-dev-server --config webpack.dev.js --open --display-modules",
-    "lint": "npx eslint --fix **/*.js"
+    "lint": "npx eslint --fix src/**/*.js"
   },
   "author": "Bence László <bencelaszlo@protonmail.com>",
   "license": "ISC",
