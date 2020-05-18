@@ -15,5 +15,6 @@ module.exports = {
     ecmaVersion: 11
   },
   rules: {
+    semi: [2, "always"]
   }
 }

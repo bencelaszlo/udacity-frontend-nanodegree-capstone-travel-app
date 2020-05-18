@@ -1,13 +1,12 @@
-import './styles/style.scss'
+import './styles/style.scss';
 
-import { getLocationInfo, saveLocation, getAllData, updateUi } from './js/app'
+import {
+  initalizeApplication,
+  updateUi
+} from './js/app';
 
-const generateElement = document.querySelector('#generate');
-generateElement.addEventListener('click', updateUi);
+initalizeApplication();
 
 export {
-    getLocationInfo,
-    saveLocation,
-    getAllData,
-    updateUi
-}
+  updateUi
+};
