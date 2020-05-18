@@ -22,23 +22,35 @@
   "devDependencies": {
     "@babel/core": "^7.9.6",
     "@babel/preset-env": "^7.9.6",
+    "babel-cli": "^6.26.0",
     "babel-loader": "^8.1.0",
+    "babel-preset-env": "^1.7.0",
     "clean-webpack-plugin": "^3.0.0",
     "css-loader": "^3.5.3",
     "eslint": "^7.0.0",
     "eslint-config-standard": "^14.1.1",
     "eslint-plugin-import": "^2.20.2",
+    "eslint-plugin-jest": "^23.13.1",
     "eslint-plugin-node": "^11.1.0",
     "eslint-plugin-promise": "^4.2.1",
     "eslint-plugin-standard": "^4.0.1",
     "html-webpack-plugin": "^3.2.0",
     "jest": "^26.0.1",
+    "jest-fetch-mock": "^3.0.3",
     "mini-css-extract-plugin": "^0.9.0",
     "node-sass": "^4.14.1",
     "optimize-css-assets-webpack-plugin": "^5.0.3",
     "sass-loader": "^8.0.2",
     "style-loader": "^1.2.1",
+    "superagent": "^5.2.2",
+    "supertest": "^4.0.2",
     "webpack-dev-server": "^3.11.0",
     "workbox-webpack-plugin": "^5.1.3"
+  },
+  "jest": {
+    "automock": false,
+    "setupFiles": [
+      "./setupJest.js"
+    ]
   }
 }

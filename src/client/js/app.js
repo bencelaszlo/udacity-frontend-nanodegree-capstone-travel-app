@@ -142,6 +142,9 @@ const updateUi = () => {
 };
 
 export {
+  getLocationInfo,
+  getWeather,
+  getPicture,
   initalizeApplication,
   updateUi
 };

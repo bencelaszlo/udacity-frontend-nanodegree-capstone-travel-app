@@ -5,7 +5,8 @@ module.exports = {
     node: true
   },
   extends: [
-    'standard'
+    'standard',
+    "plugin:jest/recommended"
   ],
   globals: {
     Atomics: 'readonly',
@@ -15,6 +16,8 @@ module.exports = {
     ecmaVersion: 11
   },
   rules: {
-    semi: [2, "always"]
-  }
+    semi: [2, "always"],
+    quotes: [2, "single"]
+  },
+  plugins: ["jest"]
 }
